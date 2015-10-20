@@ -10,7 +10,6 @@
 # Extra Unity Specifics #
 #########################
 *.bin
-*.meta
 *.csproj
 *.sln
 *.userprefs
