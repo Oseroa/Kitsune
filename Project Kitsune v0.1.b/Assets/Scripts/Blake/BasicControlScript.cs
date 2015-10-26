@@ -16,6 +16,11 @@ public class BasicControlScript : MonoBehaviour
     private float ExponentialJump = new float();
     private bool f_Jump = false;
 
+    private float Jump1 = 2.0f;
+    private float Jump2 = 2.2f;
+    private float Jump3 = 2.4f;
+    private float Jump4 = 2.6f;
+
     Vector3 MousePosition = new Vector3();
 
     void FixedUpdate()
@@ -81,41 +86,84 @@ public class BasicControlScript : MonoBehaviour
             IsGliding = true;
         }
 
-        //debug later
-        if (GetComponent<PlayerManager>().IsGrounded == true && Mathf.Abs(rb.velocity.x) < Velocity)
+       
+        if(Mathf.Abs(rb.velocity.y) > 1.0f)
         {
-            rb.AddForce(RigidbodyMod * (Velocity * 100 / JumpControl) * Time.deltaTime, ForceMode.Acceleration);
-            if (Mathf.Abs(rb.velocity.x) > 20.0f)
+            rb.AddForce(RigidbodyMod * (Velocity) * Time.deltaTime, ForceMode.Impulse);
+
+            if(GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
             {
-                if (rb.velocity.x < 0)
+                if (rb.velocity.x < -Velocity * Jump1)
                 {
-                    rb.velocity = new Vector3(Velocity, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(Mathf.Lerp(-Velocity * Jump1, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
+               
                 }
 
-                else
+                else if (rb.velocity.x > Velocity * Jump1)
                 {
-                    rb.velocity = new Vector3(Velocity, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(Mathf.Lerp(Velocity * Jump1, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
+                    // rb.velocity = new Vector3((Velocity) * 1.5f, rb.velocity.y, rb.velocity.z);
+                }
+            }
+            else if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps - 1)
+            {
+                if (rb.velocity.x < -Velocity * Jump2)
+                {
+                    
+                    rb.velocity = new Vector3(Mathf.Lerp(-Velocity * Jump2, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
+                }
+
+                else if (rb.velocity.x > Velocity * Jump2)
+                {
+                    rb.velocity = new Vector3(Mathf.Lerp(Velocity * Jump2, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
+                }
+            }
+            else if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps - 2)
+            {
+                if (rb.velocity.x < -Velocity * Jump3)
+                {
+                    //rb.velocity = new Vector3((-Velocity) * 1.8f, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(Mathf.Lerp(-Velocity * Jump3, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
+                }
+
+                else if (rb.velocity.x > Velocity * Jump3)
+                {
+                    rb.velocity = new Vector3(Mathf.Lerp(Velocity * Jump3, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
+                }
+            }
+            else if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps - 3)
+            {
+                if (rb.velocity.x < -Velocity * Jump4)
+                {
+                    //rb.velocity = new Vector3((-Velocity) * 1.8f, rb.velocity.y, rb.velocity.z);
+                    rb.velocity = new Vector3(Mathf.Lerp(-Velocity * Jump4, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
+                }
+
+                else if (rb.velocity.x > Velocity * Jump4)
+                {
+                    rb.velocity = new Vector3(Mathf.Lerp(Velocity * Jump4, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
                 }
             }
 
-            rb.AddForce(RigidbodyMod * (Velocity * 100) * Time.deltaTime, ForceMode.Impulse);
+
         }
 
-        //Standard Movement
         else
         {
             rb.AddForce(RigidbodyMod * (Velocity * 10) * Time.deltaTime, ForceMode.Impulse);
 
-            if (Mathf.Abs(rb.velocity.x) > Velocity)
+            if (Mathf.Abs(rb.velocity.x) > Velocity) 
             {
-                if (rb.velocity.x < 0)
+                if (rb.velocity.x < -Velocity)
                 {
                     rb.velocity = new Vector3(-Velocity, rb.velocity.y, rb.velocity.z);
+                   // rb.velocity = new Vector3(Mathf.Lerp(-Velocity *2, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
                 }
 
-                else
+                else if(rb.velocity.x > Velocity)
                 {
-                    rb.velocity = new Vector3(Velocity, rb.velocity.y, rb.velocity.z);
+                     rb.velocity = new Vector3(Velocity, rb.velocity.y, rb.velocity.z);
+                   // rb.velocity = new Vector3(Mathf.Lerp(Velocity *2, rb.velocity.x, Time.deltaTime), rb.velocity.y, rb.velocity.z);
                 }
             }
 
