@@ -16,12 +16,13 @@ public class WindCollider : MonoBehaviour
 	
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         Vector3 addForce = windForce;
         addForce.z = 0;
         Rigidbody otherRigid = other.GetComponent<Rigidbody>();
-        if (otherRigid.mass >= 1) addForce *= 350;
-        otherRigid.AddForce(addForce);
+        if (otherRigid.mass >= 1) addForce *= 30;
+        Vector3 finalForce = new Vector3(Mathf.Lerp(0, addForce.x, 1), Mathf.Lerp(0, addForce.y, 1),0);
+        otherRigid.AddForce(finalForce);
     }
 }
