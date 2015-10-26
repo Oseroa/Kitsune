@@ -5,15 +5,22 @@ public class BasicAIController : MonoBehaviour
 {
     public GameObject NodeA;
     public GameObject NodeB;
-    public float MovementSpeed;
+    public GameObject PatrolArea;
+    public float DefaultMovementSpeed;
+    float movementSpeed;
     bool TargetAchieved = false;
     bool _firstRun = false;
     GameObject TargetNode;
+    float randomRangeForPatrolNodes = 0.02f;
+    float speedScale = 1;
 
+    void Start()
+    {
+        movementSpeed = DefaultMovementSpeed;
+    }
 
     void LateUpdate()
     {
-        
         if (_firstRun == false)
         {
             TargetNode = NodeB;
@@ -26,6 +33,8 @@ public class BasicAIController : MonoBehaviour
             {
                 TargetNode = NodeA;
                 TargetAchieved = false;
+                RandomiseNextTargetPoint(NodeB);
+                speedScale = 1;
                 print("Node switched to A");
             }
 
@@ -33,12 +42,23 @@ public class BasicAIController : MonoBehaviour
             {
                 TargetNode = NodeB;
                 TargetAchieved = false;
+                RandomiseNextTargetPoint(NodeA);
+                speedScale = 1;
                 print("Node switched to B");
             }
 
         }
+        if (TargetNode.GetComponent<SphereCollider>().bounds.Intersects(GetComponent<SphereCollider>().bounds))
+        {
+            if(speedScale > 0.01) speedScale -= Time.deltaTime;
+            movementSpeed = DefaultMovementSpeed * speedScale;
+        }
+        else
+        {
+            movementSpeed = DefaultMovementSpeed;
+        }
 
-        float MoveSpeed = MovementSpeed * Time.deltaTime;
+        float MoveSpeed = movementSpeed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, TargetNode.transform.position, MoveSpeed);
 
@@ -47,5 +67,12 @@ public class BasicAIController : MonoBehaviour
             TargetAchieved = true;
             print("ithappen");
         }
+    }
+
+    void RandomiseNextTargetPoint(GameObject node)
+    {
+        float randomTempX = randomRangeForPatrolNodes * PatrolArea.transform.localScale.x;
+        float randomTempY = randomRangeForPatrolNodes * PatrolArea.transform.localScale.y;
+        node.transform.localPosition = new Vector3(Random.Range(-randomTempX, randomTempX), Random.Range(-randomTempY,randomTempY),0);
     }
 }
