@@ -6,9 +6,9 @@ public class ParticleCollision : MonoBehaviour
 
     void OnParticleCollision(GameObject KonoObject)
     {
-        Rigidbody konoRigidBody = KonoObject.GetComponent<Rigidbody>();
+        //Rigidbody konoRigidBody = KonoObject.GetComponent<Rigidbody>();
 
-        Vector3 UpdatedForce = new Vector3();
+        //Vector3 UpdatedForce = new Vector3();
 
      
     }

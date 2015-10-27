@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class BasicAIController : MonoBehaviour
+    //Reiterated by Aythan on 10/27/2015
 {
     public GameObject NodeA;
     public GameObject NodeB;
