@@ -11,7 +11,7 @@ public class MovingPlatform : MonoBehaviour
 
     GameObject CurrentTarget;
 
-    void Update()
+    void FixedUpdate()
     {
         float EachStep = PlatformMovementSpeed * Time.deltaTime;
 

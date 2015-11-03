@@ -12,7 +12,7 @@ public class PlayerGlide : MonoBehaviour
     {
          GlideForce = new Vector3(0.0f, GlidePower, 0.0f);
     }
-	void LateUpdate ()
+	void FixedUpdate()
     {
         ThisRigidBody = GetComponent<Rigidbody>();
 

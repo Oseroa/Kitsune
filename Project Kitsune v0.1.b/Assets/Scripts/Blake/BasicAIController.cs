@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class BasicAIController : MonoBehaviour
-    //Reiterated by Aythan on 10/27/2015
+
 {
     public GameObject NodeA;
     public GameObject NodeB;
@@ -36,7 +36,7 @@ public class BasicAIController : MonoBehaviour
                 TargetAchieved = false;
                 RandomiseNextTargetPoint(NodeB);
                 speedScale = 1;
-                print("Node switched to A");
+
             }
 
             else if (TargetNode == NodeA)
@@ -45,7 +45,7 @@ public class BasicAIController : MonoBehaviour
                 TargetAchieved = false;
                 RandomiseNextTargetPoint(NodeA);
                 speedScale = 1;
-                print("Node switched to B");
+             
             }
 
         }
@@ -66,7 +66,7 @@ public class BasicAIController : MonoBehaviour
         if (transform.position.x > TargetNode.transform.position.x - 1 && transform.position.x < TargetNode.transform.position.x + 1)
         {
             TargetAchieved = true;
-            print("ithappen");
+           
         }
     }
 
