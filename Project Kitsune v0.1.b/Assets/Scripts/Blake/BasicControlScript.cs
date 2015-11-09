@@ -106,10 +106,10 @@ public class BasicControlScript : MonoBehaviour
 
         if (UpdatedMovement.x != 0.0f)
         {
-            transform.rotation = Quaternion.LookRotation(UpdatedMovement);
+            transform.rotation = Quaternion.LookRotation(-UpdatedMovement);
         }
     
-        transform.position += UpdatedMovement;
+        transform.position += -UpdatedMovement;
 
 
     }
