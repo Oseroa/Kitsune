@@ -60,7 +60,7 @@ public class BasicControlScript : MonoBehaviour
                     MousePosition.z = 20;
 
                     MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
-                    RelativePosition =   -transform.position - MousePosition;
+                    RelativePosition =   transform.position - MousePosition;
                 }
 
                 if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
@@ -110,9 +110,9 @@ public class BasicControlScript : MonoBehaviour
             v_Time = 0.0f;
         }
 
-        if (Mathf.Abs(rb.velocity.y) > 0.0f)
+        if (Mathf.Abs(rb.velocity.y) > 0.0f ) 
         {
-            UpdatedMovement.x = ((UpdatedMovement.x * Velocity)) * Time.deltaTime;
+            UpdatedMovement.x = ((UpdatedMovement.x * (Velocity) * Time.deltaTime));
         }
 
         else
@@ -126,10 +126,41 @@ public class BasicControlScript : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(UpdatedMovement);
         }
 
-       
-        transform.position += UpdatedMovement;
+        Vector3 KonoDownwardVector = transform.TransformDirection(Vector3.down);
+        Vector3 KonoRightwardBector = transform.TransformDirection(Vector3.right);
+        Vector3 KonoLeftwardBector = transform.TransformDirection(Vector3.left);
 
 
+        if (Physics.Raycast(transform.position,KonoDownwardVector, 1) || Physics.Raycast(transform.position, KonoLeftwardBector, 1) || Physics.Raycast(transform.position, KonoRightwardBector, 1))
+        {
+            Vector3 NewVelocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+            rb.velocity = NewVelocity;
+        }
+
+        if (RigidbodyMod.x > 0.1f && !Physics.Raycast(transform.position, KonoLeftwardBector, 1))
+        {
+            Vector3 NewVelocity = new Vector3(-0.1f, 0.0f, 0.0f);
+            rb.velocity -= NewVelocity;
+        }
+        if (RigidbodyMod.x < -0.1f && !Physics.Raycast(transform.position, KonoRightwardBector, 1))
+        {
+            Vector3 NewVelocity = new Vector3(0.1f, 0.0f, 0.0f);
+            rb.velocity -= NewVelocity;
+        }
+
+        if (Physics.Raycast(transform.position, KonoDownwardVector, 1))
+        {
+            Vector3 NewVelocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+            rb.velocity = NewVelocity;
+        }
+
+        if(!Physics.Raycast(transform.position, KonoLeftwardBector, 2) || !Physics.Raycast(transform.position, KonoRightwardBector, 2))
+        {
+            transform.position += UpdatedMovement;
+  
+        }
+
+      
     }
 }
 
