@@ -10,6 +10,7 @@ public class HUDUpdates : MonoBehaviour
     public Camera mainCamera;
     RectTransform CanvasRec;
     RectTransform thistransform;
+    float currentAngle;
     // Use this for initialization
     void Start ()
     {
@@ -20,7 +21,7 @@ public class HUDUpdates : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        //Rotate circle thingy to mouse position on screen
+        //Rotate circle thingy to mouse position on screen or controller if one is plugged in
        
         float angle = 0.0f;
         if (XCI.IsPluggedIn(1))
@@ -30,7 +31,9 @@ public class HUDUpdates : MonoBehaviour
             if (x != 0.0f || y != 0.0f)
             {
                 angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+                currentAngle = angle;
             }
+            else angle = currentAngle;
         }
         else
         {
