@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: fa18702ca6a3cca48a8e38bca6afea56
+timeCreated: 1447118661
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: band
+    100002: belt
+    100004: //RootNode
+    100006: head
+    100008: left
+    100010: left_arm3
+    100012: left_tassle2
+    100014: left_tassle3
+    100016: mask
+    100018: neck
+    100020: outer_lower_skirt
+    100022: Player
+    100024: pointLight1
+    100026: right_arm
+    100028: shall_with_bells
+    100030: The_Player
+    100032: under_shitt
+    100034: under_skirt
+    100036: upper_shirt
+    400000: band
+    400002: belt
+    400004: //RootNode
+    400006: head
+    400008: left
+    400010: left_arm3
+    400012: left_tassle2
+    400014: left_tassle3
+    400016: mask
+    400018: neck
+    400020: outer_lower_skirt
+    400022: Player
+    400024: pointLight1
+    400026: right_arm
+    400028: shall_with_bells
+    400030: The_Player
+    400032: under_shitt
+    400034: under_skirt
+    400036: upper_shirt
+    4300000: right_arm
+    4300002: upper_shirt
+    4300004: outer_lower_skirt
+    4300006: belt
+    4300008: under_skirt
+    4300010: under_shitt
+    4300012: band
+    4300014: head
+    4300016: mask
+    4300018: neck
+    4300020: shall_with_bells
+    4300022: left_tassle2
+    4300024: left_tassle3
+    4300026: left_arm3
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: band
+    13700002: belt
+    13700004: head
+    13700006: left_arm3
+    13700008: left_tassle2
+    13700010: left_tassle3
+    13700012: mask
+    13700014: neck
+    13700016: outer_lower_skirt
+    13700018: right_arm
+    13700020: shall_with_bells
+    13700022: under_shitt
+    13700024: under_skirt
+    13700026: upper_shirt
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
