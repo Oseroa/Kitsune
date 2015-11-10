@@ -42,3 +42,4 @@ C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug
 C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\obj\Debug\Assembly-CSharp.dll
 C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\obj\Debug\Assembly-CSharp.pdb
+C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug\XInputDotNetPure.dll
