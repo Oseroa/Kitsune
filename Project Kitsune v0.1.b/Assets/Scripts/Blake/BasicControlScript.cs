@@ -19,6 +19,7 @@ public class BasicControlScript : MonoBehaviour
     private float ExponentialJump = new float();
     private bool f_Jump = false;
     Vector3 MousePosition = new Vector3();
+    Vector3 ControllerPosition = new Vector3();
 
     void FixedUpdate()
     {
@@ -45,12 +46,13 @@ public class BasicControlScript : MonoBehaviour
                 Vector3 RelativePosition;
                 if (XCI.IsPluggedIn(1))
                 {
-                    float x = XCI.GetAxisRaw(XboxAxis.RightStickX);
-                    float y = XCI.GetAxisRaw(XboxAxis.RightStickY);
-                    MousePosition = new Vector3(x, y, 20);
-                    print(MousePosition);
-                    MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
-                    RelativePosition = MousePosition;
+                    ControllerPosition.x = XCI.GetAxisRaw(XboxAxis.RightStickX) * 100;
+                    ControllerPosition.y = XCI.GetAxisRaw(XboxAxis.RightStickY) *100;
+                    ControllerPosition.z = 0.0f;
+
+
+                    RelativePosition = ControllerPosition - transform.position;
+                    RelativePosition.z = 0.0f;
                 }
                 else
                 {
@@ -58,7 +60,7 @@ public class BasicControlScript : MonoBehaviour
                     MousePosition.z = 20;
 
                     MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
-                    RelativePosition = MousePosition - transform.position;
+                    RelativePosition =   -transform.position - MousePosition;
                 }
 
                 if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
@@ -79,10 +81,7 @@ public class BasicControlScript : MonoBehaviour
                         ExponentialJump *= ExponentialJumpModifier;
                     }
 
-                    //Vector3 JumpVector = RelativePosition * (JumpPower;
-                    //JumpVector.z = 0;
-                    //transform.position = Vector3.Lerp(transform.position, JumpVector, l_Time * 0.1f);
-                    rb.AddForce(-RelativePosition.normalized * (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
+                    rb.AddForce(RelativePosition.normalized* (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
                     gameObject.GetComponent<PlayerManager>().NumberOfJumps -= 1;
                     l_Time = 0.0f;
                     GetComponent<PlayerGlide>().enabled = false;
