@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class ShrineManager : MonoBehaviour
 {
     public GameObject LeftSideCollider;
     public GameObject RightSideCollider;
-
+     
     [HideInInspector]
     public bool EventTriggered = false;
 
@@ -17,8 +16,7 @@ public class ShrineManager : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (EventTriggered == false)
-        {
+     
             if (Input.GetButton("Interact") && col.tag == ("Player"))
             {
 
