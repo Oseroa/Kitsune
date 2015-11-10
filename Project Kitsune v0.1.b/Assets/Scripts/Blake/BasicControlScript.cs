@@ -35,7 +35,7 @@ public class BasicControlScript : MonoBehaviour
             GetComponent<TrailRenderer>().enabled = false;
             IsGliding = false;
         }
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") || XCI.GetButton(XboxButton.A))
         {
             if (gameObject.GetComponent<PlayerManager>().NumberOfJumps > 0)
             {
