@@ -18,13 +18,14 @@ Shader "Shader Forge/Examples/Vertex Color Rounding" {
             }
             
             
-            Fog {Mode Off}
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #define UNITY_PASS_FORWARDBASE
-            #define SHOULD_SAMPLE_SH_PROBE ( defined (LIGHTMAP_OFF) )
+            #define SHOULD_SAMPLE_SH_PROBE ( defined (LIGHTMAP_OFF) && defined(DYNAMICLIGHTMAP_OFF) )
             #include "UnityCG.cginc"
+            #include "UnityPBSLighting.cginc"
+            #include "UnityStandardBRDF.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma exclude_renderers gles xbox360 ps3 flash 
             #pragma target 3.0
@@ -37,6 +38,11 @@ Shader "Shader Forge/Examples/Vertex Color Rounding" {
             struct VertexOutput {
                 float4 pos : SV_POSITION;
                 float4 vertexColor : COLOR;
+                #ifndef LIGHTMAP_OFF
+                    float4 uvLM : TEXCOORD0;
+                #else
+                    float3 shLight : TEXCOORD0;
+                #endif
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
