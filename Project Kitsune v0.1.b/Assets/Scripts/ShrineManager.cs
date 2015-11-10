@@ -42,7 +42,7 @@ public class ShrineManager : MonoBehaviour
 
             }
         }
-    }
+    
 
     void Update()
     {
