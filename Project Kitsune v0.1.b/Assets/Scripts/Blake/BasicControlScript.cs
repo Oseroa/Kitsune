@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XboxCtrlrInput;
 
+
+//Controller Input for xbox using https://github.com/JISyed/Unity-XboxCtrlrInput
 public class BasicControlScript : MonoBehaviour
 {
 
@@ -25,7 +28,7 @@ public class BasicControlScript : MonoBehaviour
         RigidbodyMod.x = Input.GetAxis("Horizontal");
         Rigidbody rb = GetComponent<Rigidbody>();
         TrailRenderer tr = GetComponent<TrailRenderer>();
-   
+
         if (Input.GetButton("Glide") == false)
         {
             //GetComponent<PlayerGlide>().enabled = false;
@@ -95,7 +98,7 @@ public class BasicControlScript : MonoBehaviour
 
         if (Mathf.Abs(rb.velocity.y) > 0.0f)
         {
-            UpdatedMovement.x = ((UpdatedMovement.x * Velocity) / 1.2f) * Time.deltaTime;
+            UpdatedMovement.x = ((UpdatedMovement.x * Velocity)) * Time.deltaTime;
         }
 
         else
