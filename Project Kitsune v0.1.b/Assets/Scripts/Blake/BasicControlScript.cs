@@ -32,42 +32,44 @@ public class BasicControlScript : MonoBehaviour
             GetComponent<TrailRenderer>().enabled = false;
             IsGliding = false;
         }
-
-        if (Input.GetButton("Jump") && gameObject.GetComponent<PlayerManager>().NumberOfJumps > 0)
+        if (Input.GetButton("Jump"))
         {
-            tr.enabled = false;
-            rb.useGravity = false;
-            MousePosition = Input.mousePosition;
-            MousePosition.z = 20;
-
-            MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
-            Vector3 RelativePosition = MousePosition - transform.position;
-
-            if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
+            if (gameObject.GetComponent<PlayerManager>().NumberOfJumps > 0)
             {
-                f_Jump = false;
-            }
+                tr.enabled = false;
+                rb.useGravity = false;
+                MousePosition = Input.mousePosition;
+                MousePosition.z = 20;
 
-            if (l_Time > TimeBetweenJumps && IsGliding == false)
-            {
-                if (f_Jump == false)
+                MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
+                Vector3 RelativePosition = MousePosition - transform.position;
+
+                if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
                 {
-                    ExponentialJump = JumpPower;
-                    f_Jump = true;
+                    f_Jump = false;
                 }
 
-                else if (f_Jump == true)
+                if (l_Time > TimeBetweenJumps && IsGliding == false)
                 {
-                    ExponentialJump *= ExponentialJumpModifier;
-                }
+                    if (f_Jump == false)
+                    {
+                        ExponentialJump = JumpPower;
+                        f_Jump = true;
+                    }
 
-                //Vector3 JumpVector = RelativePosition * (JumpPower;
-                //JumpVector.z = 0;
-                //transform.position = Vector3.Lerp(transform.position, JumpVector, l_Time * 0.1f);
-                rb.AddForce(-RelativePosition.normalized * (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
-                gameObject.GetComponent<PlayerManager>().NumberOfJumps -= 1;
-                l_Time = 0.0f;
-                GetComponent<PlayerGlide>().enabled = false;
+                    else if (f_Jump == true)
+                    {
+                        ExponentialJump *= ExponentialJumpModifier;
+                    }
+
+                    //Vector3 JumpVector = RelativePosition * (JumpPower;
+                    //JumpVector.z = 0;
+                    //transform.position = Vector3.Lerp(transform.position, JumpVector, l_Time * 0.1f);
+                    rb.AddForce(-RelativePosition.normalized * (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
+                    gameObject.GetComponent<PlayerManager>().NumberOfJumps -= 1;
+                    l_Time = 0.0f;
+                    GetComponent<PlayerGlide>().enabled = false;
+                }
             }
         }
         //Glide After Jump
@@ -106,10 +108,10 @@ public class BasicControlScript : MonoBehaviour
 
         if (UpdatedMovement.x != 0.0f)
         {
-            transform.rotation = Quaternion.LookRotation(-UpdatedMovement);
+            transform.rotation = Quaternion.LookRotation(UpdatedMovement);
         }
     
-        transform.position += -UpdatedMovement;
+        transform.position += UpdatedMovement;
 
 
     }
