@@ -98,7 +98,6 @@ public class BasicControlScript : MonoBehaviour
 
         Vector3 UpdatedMovement = RigidbodyMod;
 
-      //  Vector3 PreviousMovement = transform.position;
 
         if (Mathf.Abs(rb.velocity.y) == 0.0f)
         {
@@ -126,7 +125,8 @@ public class BasicControlScript : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(UpdatedMovement);
         }
-    
+
+       
         transform.position += UpdatedMovement;
 
 
