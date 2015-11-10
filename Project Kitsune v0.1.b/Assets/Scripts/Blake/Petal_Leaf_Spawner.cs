@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 
 public class Petal_Leaf_Spawner : MonoBehaviour
@@ -8,7 +9,7 @@ public class Petal_Leaf_Spawner : MonoBehaviour
     Quaternion StartRotation = new Quaternion();
     public Vector3 FinalScale = new Vector3();
     public float MaxDistance = new float();
-
+    
     float l_Time;
 
 
