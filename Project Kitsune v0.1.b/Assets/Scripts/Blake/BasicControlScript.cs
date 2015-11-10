@@ -35,17 +35,31 @@ public class BasicControlScript : MonoBehaviour
             GetComponent<TrailRenderer>().enabled = false;
             IsGliding = false;
         }
-        if (Input.GetButton("Jump") || XCI.GetButton(XboxButton.A))
+        if (Input.GetButton("Jump") || XCI.GetButton(XboxButton.RightBumper))
         {
             if (gameObject.GetComponent<PlayerManager>().NumberOfJumps > 0)
             {
                 tr.enabled = false;
                 rb.useGravity = false;
-                MousePosition = Input.mousePosition;
-                MousePosition.z = 20;
 
-                MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
-                Vector3 RelativePosition = MousePosition - transform.position;
+                Vector3 RelativePosition;
+                if (XCI.IsPluggedIn(1))
+                {
+                    float x = XCI.GetAxisRaw(XboxAxis.RightStickX);
+                    float y = XCI.GetAxisRaw(XboxAxis.RightStickY);
+                    MousePosition = new Vector3(x, y, 20);
+                    print(MousePosition);
+                    MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
+                    RelativePosition = MousePosition;
+                }
+                else
+                {
+                    MousePosition = Input.mousePosition;
+                    MousePosition.z = 20;
+
+                    MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
+                    RelativePosition = MousePosition - transform.position;
+                }
 
                 if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
                 {

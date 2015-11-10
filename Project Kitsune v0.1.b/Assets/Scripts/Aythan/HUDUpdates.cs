@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XboxCtrlrInput;
 
 public class HUDUpdates : MonoBehaviour
 {
@@ -19,9 +20,23 @@ public class HUDUpdates : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        //Rotate to mouse position on screen
-        Vector3 vectorToTarget = Input.mousePosition - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        //Rotate circle thingy to mouse position on screen
+       
+        float angle = 0.0f;
+        if (XCI.IsPluggedIn(1))
+        {
+            float x = XCI.GetAxisRaw(XboxAxis.RightStickX);
+            float y = XCI.GetAxisRaw(XboxAxis.RightStickY);
+            if (x != 0.0f || y != 0.0f)
+            {
+                angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+            }
+        }
+        else
+        {
+            Vector3 vectorToTarget = Input.mousePosition - transform.position;
+            angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+        }
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * rotateSpeed);
 
