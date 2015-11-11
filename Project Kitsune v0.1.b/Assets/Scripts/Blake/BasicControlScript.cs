@@ -53,6 +53,30 @@ public class BasicControlScript : MonoBehaviour
 
                     RelativePosition = ControllerPosition - transform.position;
                     RelativePosition.z = 0.0f;
+
+                    if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
+                    {
+                        f_Jump = false;
+                    }
+
+                    if (l_Time > TimeBetweenJumps && IsGliding == false)
+                    {
+                        if (f_Jump == false)
+                        {
+                            ExponentialJump = JumpPower;
+                            f_Jump = true;
+                        }
+
+                        else if (f_Jump == true)
+                        {
+                            ExponentialJump *= ExponentialJumpModifier;
+                        }
+
+                        rb.AddForce(-RelativePosition.normalized * (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
+                        gameObject.GetComponent<PlayerManager>().NumberOfJumps -= 1;
+                        l_Time = 0.0f;
+                        GetComponent<PlayerGlide>().enabled = false;
+                    }
                 }
                 else
                 {
@@ -61,31 +85,33 @@ public class BasicControlScript : MonoBehaviour
 
                     MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
                     RelativePosition =   transform.position - MousePosition;
-                }
 
-                if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
-                {
-                    f_Jump = false;
-                }
-
-                if (l_Time > TimeBetweenJumps && IsGliding == false)
-                {
-                    if (f_Jump == false)
+                    if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
                     {
-                        ExponentialJump = JumpPower;
-                        f_Jump = true;
+                        f_Jump = false;
                     }
 
-                    else if (f_Jump == true)
+                    if (l_Time > TimeBetweenJumps && IsGliding == false)
                     {
-                        ExponentialJump *= ExponentialJumpModifier;
-                    }
+                        if (f_Jump == false)
+                        {
+                            ExponentialJump = JumpPower;
+                            f_Jump = true;
+                        }
 
-                    rb.AddForce(RelativePosition.normalized* (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
-                    gameObject.GetComponent<PlayerManager>().NumberOfJumps -= 1;
-                    l_Time = 0.0f;
-                    GetComponent<PlayerGlide>().enabled = false;
+                        else if (f_Jump == true)
+                        {
+                            ExponentialJump *= ExponentialJumpModifier;
+                        }
+
+                        rb.AddForce(RelativePosition.normalized * (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
+                        gameObject.GetComponent<PlayerManager>().NumberOfJumps -= 1;
+                        l_Time = 0.0f;
+                        GetComponent<PlayerGlide>().enabled = false;
+                    }
                 }
+
+    
             }
         }
         //Glide After Jump
@@ -150,6 +176,7 @@ public class BasicControlScript : MonoBehaviour
 
         if (Physics.Raycast(transform.position, KonoDownwardVector, 1))
         {
+           GetComponent<PlayerManager>().NumberOfJumps = GetComponent<PlayerManager>().MaxNumberOfJumps;
             Vector3 NewVelocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
             rb.velocity = NewVelocity;
         }

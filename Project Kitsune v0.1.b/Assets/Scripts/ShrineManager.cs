@@ -35,7 +35,7 @@ public class ShrineManager : MonoBehaviour
         {
             if (EventTriggered == false)
             {
-                if (Input.GetButton("Interact") && col.tag == ("Player"))
+                if (col.tag == ("Player"))
                 {
                     CameraScapegoat.GetComponent<CameraScript>().enabled = false;
                     CameraScapegoat.GetComponent<CameraEventScript>().followObject = gameObject;
