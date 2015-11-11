@@ -174,7 +174,7 @@ public class BasicControlScript : MonoBehaviour
             rb.velocity -= NewVelocity;
         }
 
-        if (Physics.Raycast(transform.position, KonoDownwardVector, 1))
+        if (Physics.Raycast(transform.position, KonoDownwardVector, 0.7f))
         {
            GetComponent<PlayerManager>().NumberOfJumps = GetComponent<PlayerManager>().MaxNumberOfJumps;
             Vector3 NewVelocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
