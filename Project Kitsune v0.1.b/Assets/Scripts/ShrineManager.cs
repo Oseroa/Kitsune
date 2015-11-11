@@ -5,6 +5,10 @@ public class ShrineManager : MonoBehaviour
 {
     public GameObject LeftSideCollider;
     public GameObject RightSideCollider;
+    public GameObject[] PanToObjects;
+
+    [HideInInspector]
+    public bool PanHasFinished = false;
 
     [HideInInspector]
     public bool EventTriggered = false;
@@ -17,31 +21,41 @@ public class ShrineManager : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (EventTriggered == false)
+        GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
+
+        if (!PanHasFinished)
         {
-            if (Input.GetButton("Interact") && col.tag == ("Player"))
+            CameraPanScript cps = CameraScapegoat.GetComponent<CameraPanScript>();
+            cps.PanObjectList = PanToObjects;
+            cps.ActivatingShrine = gameObject;
+            cps.enabled = true;
+            CameraScapegoat.GetComponent<CameraScript>().enabled = false;
+        }
+        else
+        {
+            if (EventTriggered == false)
             {
+                if (Input.GetButton("Interact") && col.tag == ("Player"))
+                {
+                    CameraScapegoat.GetComponent<CameraScript>().enabled = false;
+                    CameraScapegoat.GetComponent<CameraEventScript>().followObject = gameObject;
+                    CameraScapegoat.GetComponent<CameraEventScript>().enabled = true;
 
-                GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
+                    Collider LHS_ColScapegoat = LeftSideCollider.GetComponent<Collider>();
 
-                CameraScapegoat.GetComponent<CameraScript>().enabled = false;
-                CameraScapegoat.GetComponent<CameraEventScript>().followObject = gameObject;
-                CameraScapegoat.GetComponent<CameraEventScript>().enabled = true;
+                    LHS_ColScapegoat.enabled = true;
 
-                Collider LHS_ColScapegoat = LeftSideCollider.GetComponent<Collider>();
+                    Collider RHS_ColScapegoat = RightSideCollider.GetComponent<Collider>();
 
-                LHS_ColScapegoat.enabled = true;
+                    RHS_ColScapegoat.enabled = true;
 
-                Collider RHS_ColScapegoat = RightSideCollider.GetComponent<Collider>();
+                    EventTriggered = true;
 
-                RHS_ColScapegoat.enabled = true;
+                    EventRunning = true;
 
-                EventTriggered = true;
+                    EventCompleted = false;
 
-                EventRunning = true;
-
-                EventCompleted = false;
-
+                }
             }
         }
     }
