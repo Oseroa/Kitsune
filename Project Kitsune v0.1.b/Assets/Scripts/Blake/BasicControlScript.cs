@@ -47,12 +47,12 @@ public class BasicControlScript : MonoBehaviour
                 if (XCI.IsPluggedIn(1))
                 {
                     ControllerPosition.x = XCI.GetAxisRaw(XboxAxis.RightStickX) * 100;
-                    ControllerPosition.y = XCI.GetAxisRaw(XboxAxis.RightStickY) *100;
+                    ControllerPosition.y = XCI.GetAxisRaw(XboxAxis.RightStickY) * 100;
                     ControllerPosition.z = 0.0f;
-
-
-                    RelativePosition = ControllerPosition - transform.position;
-                    RelativePosition.z = 0.0f;
+                    ControllerPosition.x = ControllerPosition.x * -1.0f;
+                    ControllerPosition.y = ControllerPosition.y * -1.0f;
+                  RelativePosition = ControllerPosition - transform.position.normalized;
+               
 
                     if (GetComponent<PlayerManager>().NumberOfJumps == GetComponent<PlayerManager>().MaxNumberOfJumps)
                     {
@@ -72,7 +72,7 @@ public class BasicControlScript : MonoBehaviour
                             ExponentialJump *= ExponentialJumpModifier;
                         }
 
-                        rb.AddForce(-RelativePosition.normalized * (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
+                        rb.AddForce(RelativePosition.normalized * (ExponentialJump * 20) * Time.deltaTime, ForceMode.VelocityChange);
                         gameObject.GetComponent<PlayerManager>().NumberOfJumps -= 1;
                         l_Time = 0.0f;
                         GetComponent<PlayerGlide>().enabled = false;
@@ -176,8 +176,9 @@ public class BasicControlScript : MonoBehaviour
 
         if (Physics.Raycast(transform.position, KonoDownwardVector, 0.7f))
         {
-           GetComponent<PlayerManager>().NumberOfJumps = GetComponent<PlayerManager>().MaxNumberOfJumps;
+           GetComponent<PlayerManager>().NumberOfJumps = GetComponent<PlayerManager>().MaxNumberOfJumps -1;
             Vector3 NewVelocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+            ExponentialJump = JumpPower;
             rb.velocity = NewVelocity;
         }
 
