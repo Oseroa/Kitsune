@@ -7,7 +7,12 @@ public class CameraPanScript : MonoBehaviour
     public float TimeSpentAtTarget;
     public float PanZAxisDistance;
     public float SmoothSpeed;
+
+    [HideInInspector]
     public GameObject[] PanObjectList;
+
+    [HideInInspector]
+    public GameObject ActivatingShrine;
 
     float p_Time = 0.0f;
     [HideInInspector]
@@ -32,7 +37,7 @@ public class CameraPanScript : MonoBehaviour
             {
                 SpiritList.Add(konoObject); //Sort later depending on specification
             }
-
+            SpiritList.Add(ActivatingShrine);
            // GameObject PlayerScapegoat = GameObject.FindGameObjectWithTag("Player");
 
            // SpiritList.Add(PlayerScapegoat);
@@ -62,8 +67,13 @@ public class CameraPanScript : MonoBehaviour
             if(LastRun == true && p_Time > TimeSpentAtTarget)
             {
                 p_Time = 0.0f;
-                GetComponent<CameraPanScript>().enabled = false;
-                GetComponent<CameraScript>().enabled = true;
+                //GetComponent<CameraPanScript>().enabled = false;
+                CameraEventScript ces = GetComponent<CameraEventScript>();
+                ces.enabled = true;
+                ces.followObject = ActivatingShrine;
+                ShrineManager connectedShrine = ActivatingShrine.GetComponent<ShrineManager>();
+                connectedShrine.PanHasFinished = true;
+                this.enabled = false;
             }
             else if(CurrentElement != ListSize && p_Time > TimeSpentAtTarget)
             {
