@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LightController : MonoBehaviour
 {
-    bool runOnce = false;
+   // bool runOnce = false;
     float scaleTime = 0.0f;
     void Update()
     {
