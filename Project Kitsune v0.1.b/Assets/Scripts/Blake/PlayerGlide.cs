@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class PlayerGlide : MonoBehaviour
 {
 
@@ -17,6 +18,7 @@ public class PlayerGlide : MonoBehaviour
         ThisRigidBody = GetComponent<Rigidbody>();
 
         ThisRigidBody.AddForce((GlideForce), ForceMode.Acceleration);
-
+        
 	}
 }
+
