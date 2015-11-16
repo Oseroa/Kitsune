@@ -24,11 +24,7 @@ public class MenuScript : MonoBehaviour
             {
                 if (!doOnce)
                 {
-<<<<<<< .merge_file_a01312
                     playButton.GetComponent<Image>().color = Color.yellow;
-=======
-                    playButton.GetComponent<Image>().color = Color.cyan;
->>>>>>> .merge_file_a03896
                     quitButton.GetComponent<Image>().color = Color.white;
                     doOnce = true;
                 }
@@ -41,11 +37,7 @@ public class MenuScript : MonoBehaviour
             {
                 if (!doOnce)
                 {
-<<<<<<< .merge_file_a01312
                     quitButton.GetComponent<Image>().color = Color.yellow;
-=======
-                    quitButton.GetComponent<Image>().color = Color.cyan;
->>>>>>> .merge_file_a03896
                     playButton.GetComponent<Image>().color = Color.white;
                     doOnce = true;
                 }
@@ -66,10 +58,6 @@ public class MenuScript : MonoBehaviour
                 }
             }
         }
-<<<<<<< .merge_file_a01312
-=======
-
->>>>>>> .merge_file_a03896
         if (selectionTimer < selectionDelay)
         {
             selectionTimer += Time.deltaTime;
@@ -85,30 +73,4 @@ public class MenuScript : MonoBehaviour
     {
         Application.Quit();
     }
-<<<<<<< .merge_file_a01312
-=======
-
-    public void MouseHover(bool playButtonHovered)
-    {
-        if (!XCI.IsPluggedIn(1))
-        {
-            if (playButtonHovered)
-            {
-                playButton.GetComponent<Image>().color = Color.cyan;
-                quitButton.GetComponent<Image>().color = Color.white;
-            }
-            else
-            {
-                quitButton.GetComponent<Image>().color = Color.cyan;
-                playButton.GetComponent<Image>().color = Color.white;
-            }
-        }
-    }
-
-    public void ResetButtons()
-    {
-        playButton.GetComponent<Image>().color = Color.white;
-        quitButton.GetComponent<Image>().color = Color.white;
-    }
->>>>>>> .merge_file_a03896
 }
