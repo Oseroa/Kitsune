@@ -7,6 +7,10 @@ public class ShrineManager : MonoBehaviour
     public GameObject RightSideCollider;
     public GameObject[] PanToObjects;
 
+    public GameObject FirstLantern;
+    public GameObject SecondLantern;
+    public GameObject ThirdLantern;
+
     [HideInInspector]
     public bool PanHasFinished = false;
 
@@ -62,8 +66,17 @@ public class ShrineManager : MonoBehaviour
 
     void Update()
     {
+        bool lant1 = FirstLantern.GetComponent<LanternScript>().Activated;
+        bool lant2 = SecondLantern.GetComponent<LanternScript>().Activated;
+        bool lant3 = SecondLantern.GetComponent<LanternScript>().Activated;
+
+        if (lant1 && lant2 && lant3)
+        {
+            EventCompleted = true;
+        }
         if (EventRunning == true)
         {
+            
             if (EventCompleted == true)
             {
                 GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
