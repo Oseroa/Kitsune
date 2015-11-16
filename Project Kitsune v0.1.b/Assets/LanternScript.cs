@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XboxCtrlrInput;
 
 public class LanternScript : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class LanternScript : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (Input.GetButton("Interact"))
+        if (Input.GetButton("Interact") || XCI.GetButton(XboxButton.A))
         {
             Activated = true;
         }
