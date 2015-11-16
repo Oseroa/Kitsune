@@ -85,7 +85,7 @@ public class CameraPanScript : MonoBehaviour
                 if (CurrentElement != ListSize)
                 {
                     FollowTarget = SpiritList[CurrentElement];
-                }
+                } 
                 
                
             }
