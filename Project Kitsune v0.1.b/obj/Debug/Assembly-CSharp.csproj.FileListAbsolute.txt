@@ -43,3 +43,8 @@ C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\obj\Debug\Asse
 C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\obj\Debug\Assembly-CSharp.dll
 C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\obj\Debug\Assembly-CSharp.pdb
 C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug\XInputDotNetPure.dll
+C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug\UnityEngine.Advertisements.dll
+C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug\UnityEngine.Analytics.dll
+C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug\UnityEngine.Advertisements.xml
+C:\Users\blake.rudderham\Documents\Kitsune\Project Kitsune v0.1.b\Temp\bin\Debug\UnityEngine.Analytics.xml

@@ -43,8 +43,11 @@ public class CameraPanScript : MonoBehaviour
            // SpiritList.Add(PlayerScapegoat);
             _runOnce = true;
     
+            if(CurrentElement != SpiritList.Count)
+            {
+                FollowTarget = SpiritList[CurrentElement];
+            }
 
-            FollowTarget = SpiritList[CurrentElement];
             ListSize = SpiritList.Count;
 
         }
@@ -79,7 +82,12 @@ public class CameraPanScript : MonoBehaviour
             {
                 p_Time = 0.0f;
                 CurrentElement = CurrentElement + 1;
-                FollowTarget = SpiritList[CurrentElement];
+                if (CurrentElement != ListSize)
+                {
+                    FollowTarget = SpiritList[CurrentElement];
+                } 
+                
+               
             }
 
             else if (CurrentElement == ListSize && p_Time > TimeSpentAtTarget)
