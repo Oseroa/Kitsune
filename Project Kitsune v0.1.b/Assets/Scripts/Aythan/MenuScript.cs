@@ -24,7 +24,7 @@ public class MenuScript : MonoBehaviour
             {
                 if (!doOnce)
                 {
-                    playButton.GetComponent<Image>().color = Color.yellow;
+                    playButton.GetComponent<Image>().color = Color.cyan;
                     quitButton.GetComponent<Image>().color = Color.white;
                     doOnce = true;
                 }
@@ -37,7 +37,7 @@ public class MenuScript : MonoBehaviour
             {
                 if (!doOnce)
                 {
-                    quitButton.GetComponent<Image>().color = Color.yellow;
+                    quitButton.GetComponent<Image>().color = Color.cyan;
                     playButton.GetComponent<Image>().color = Color.white;
                     doOnce = true;
                 }
@@ -58,6 +58,7 @@ public class MenuScript : MonoBehaviour
                 }
             }
         }
+
         if (selectionTimer < selectionDelay)
         {
             selectionTimer += Time.deltaTime;
@@ -72,5 +73,28 @@ public class MenuScript : MonoBehaviour
     public void QuitButtonPress()
     {
         Application.Quit();
+    }
+
+    public void MouseHover(bool playButtonHovered)
+    {
+        if (!XCI.IsPluggedIn(1))
+        {
+            if (playButtonHovered)
+            {
+                playButton.GetComponent<Image>().color = Color.cyan;
+                quitButton.GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                quitButton.GetComponent<Image>().color = Color.cyan;
+                playButton.GetComponent<Image>().color = Color.white;
+            }
+        }
+    }
+
+    public void ResetButtons()
+    {
+        playButton.GetComponent<Image>().color = Color.white;
+        quitButton.GetComponent<Image>().color = Color.white;
     }
 }
