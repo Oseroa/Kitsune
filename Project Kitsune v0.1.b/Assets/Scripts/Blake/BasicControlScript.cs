@@ -23,7 +23,11 @@ public class BasicControlScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         Vector3 KonoDownwardVector = transform.TransformDirection(Vector3.down);
         Vector3 KonoRightwardBector = transform.TransformDirection(Vector3.right);
         Vector3 KonoLeftwardBector = transform.TransformDirection(Vector3.left);
