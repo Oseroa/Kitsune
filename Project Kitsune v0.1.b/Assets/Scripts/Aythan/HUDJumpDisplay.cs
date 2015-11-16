@@ -11,7 +11,7 @@ public class HUDJumpDisplay : MonoBehaviour
     {
        for (int i = 0; i < jumpObjects.Length; i++)
        {
-            if (player.GetComponent<PlayerManager>().NumberOfJumps < i + 1 || i + 1 >= player.GetComponent<PlayerManager>().MaxNumberOfJumps)
+            if (player.GetComponent<PlayerManager>().NumberOfJumps < i + 1 || i + 1 > player.GetComponent<PlayerManager>().MaxNumberOfJumps)
             {
                 jumpObjects[i].SetActive(false);
             }
