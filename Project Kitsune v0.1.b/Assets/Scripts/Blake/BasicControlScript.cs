@@ -23,7 +23,15 @@ public class BasicControlScript : MonoBehaviour
 
     void FixedUpdate()
     {
+<<<<<<< .merge_file_a01956
         
+=======
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+>>>>>>> .merge_file_a02648
         Vector3 KonoDownwardVector = transform.TransformDirection(Vector3.down);
         Vector3 KonoRightwardBector = transform.TransformDirection(Vector3.right);
         Vector3 KonoLeftwardBector = transform.TransformDirection(Vector3.left);
