@@ -3,14 +3,22 @@ using System.Collections;
 
 public class FruitHandler : MonoBehaviour
 {
+    [HideInInspector]
     public float GrowTime = new float();
     Vector3 HomePosition = new Vector3();
     Vector3 StartScale = new Vector3();
     Vector3 IncrementAmount = new Vector3(0.007f, 0.007f, 0.007f);
     Vector3 ScapegoatLocalScale = new Vector3();
+
+    public float BouncePlay;
+
     float g_Time = 0.0f;
     bool FullyGrown = false;
     bool IsActive = true;
+
+    bool BounceOne = true;
+    bool BounceTwo = true;
+    bool BounceThree = true;
 
     Rigidbody MyBody;
 
@@ -32,7 +40,35 @@ public class FruitHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        IsActive = false;
+        Rigidbody konoBody = GetComponent<Rigidbody>();
+        Vector3 ForceDirection = new Vector3(0.0f, BouncePlay, 0.0f);
+
+        if(BounceOne == true)
+        {
+            ForceDirection.y = ForceDirection.y / 1.5f;
+            konoBody.AddForce(ForceDirection * (Time.deltaTime * 100), ForceMode.Force);
+            BounceOne = false;
+        }
+        else if (BounceTwo == true)
+        {
+            ForceDirection.y = ForceDirection.y /2;
+            konoBody.AddForce(ForceDirection * (Time.deltaTime * 100), ForceMode.Force);
+            BounceTwo = false;
+        }
+        else if (BounceThree == true)
+        {
+            ForceDirection.y = ForceDirection.y / 3;
+            konoBody.AddForce(ForceDirection * (Time.deltaTime * 100), ForceMode.Force);
+            BounceThree = false;
+        }
+        else
+        {
+            IsActive = false;
+            BounceOne = true;
+            BounceTwo = true;
+            BounceThree = true;
+        }
+      
     }
     void Update()
     {

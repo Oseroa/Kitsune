@@ -202,11 +202,7 @@ public class BasicControlScript : MonoBehaviour
          
 
         }
-        else
-        {
-            Rigidbody konoBody = GetComponent<Rigidbody>();
-            konoBody.velocity = new Vector3(0, 0, 0);
-        }
+   
    
     }
   

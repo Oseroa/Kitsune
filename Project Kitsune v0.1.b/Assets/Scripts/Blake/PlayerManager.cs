@@ -17,8 +17,4 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public Vector3 CurrentCheckPoint = new Vector3();
 
-    void FixedUpdate()
-    {
-        
-    }
 }
