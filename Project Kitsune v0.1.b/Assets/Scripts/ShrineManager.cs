@@ -9,7 +9,6 @@ public class ShrineManager : MonoBehaviour
 
     public GameObject FirstLantern;
     public GameObject SecondLantern;
-    public GameObject ThirdLantern;
 
     [HideInInspector]
     public bool PanHasFinished = false;
@@ -68,9 +67,8 @@ public class ShrineManager : MonoBehaviour
     {
         bool lant1 = FirstLantern.GetComponent<LanternScript>().Activated;
         bool lant2 = SecondLantern.GetComponent<LanternScript>().Activated;
-        bool lant3 = SecondLantern.GetComponent<LanternScript>().Activated;
 
-        if (lant1 && lant2 && lant3)
+        if (lant1 && lant2)
         {
             EventCompleted = true;
         }
@@ -93,6 +91,7 @@ public class ShrineManager : MonoBehaviour
                 placeHolder.GetComponent<PlayerManager>().MaxNumberOfJumps += 1;
                 LHS_Scapegoat.enabled = false;
                 RHS_Scapegoat.enabled = false;
+				EventRunning=false;
 
             }
         }
