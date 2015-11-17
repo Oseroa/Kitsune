@@ -26,8 +26,8 @@ public class FruitHandler : MonoBehaviour
     {
         Rigidbody ThisBody = GetComponent<Rigidbody>();
 
-        ThisBody.mass = Random.Range(0.008f, 0.001f);
-        ThisBody.drag = Random.Range(0.04f, 0.06f);
+        ThisBody.mass = Random.Range(0.005f, 0.008f);
+      // ThisBody.drag = Random.Range(0.04f, 0.06f);
 
         HomePosition = transform.position;
         StartScale = transform.localScale;

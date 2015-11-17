@@ -10,11 +10,25 @@ public class MenuScript : MonoBehaviour
     public GameObject playButton;
     public GameObject quitButton;
 
+    public Texture2D playButtonTexture;
+    public Texture2D quitButtonTexture;
+
     float selectionTimer = 0.0f;
     float selectionDelay = 0.3f;
 
     bool playButtonActive = true;
     bool doOnce = false;
+
+    public void Start()
+    {
+        Sprite playSprite;
+        playSprite = Sprite.Create(playButtonTexture, new Rect(0, 0, 500, 245),new Vector2());
+        playButton.GetComponent<Image>().sprite = playSprite;
+
+        Sprite quitSprite;
+        quitSprite = Sprite.Create(quitButtonTexture, new Rect(0, 0, 500, 236), new Vector2());
+        quitButton.GetComponent<Image>().sprite = quitSprite;
+    }
 
     public void Update()
     {
