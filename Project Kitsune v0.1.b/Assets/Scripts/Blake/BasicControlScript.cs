@@ -113,7 +113,7 @@ public class BasicControlScript : MonoBehaviour
                                 f_Jump = true;
                             }
 
-                            else if (f_Jump == true)
+                            else if (f_Jump == true && GetComponent<PlayerManager>().InfiniteJumps == false)
                             {
                                 ExponentialJump *= ExponentialJumpModifier;
                             }
@@ -138,10 +138,6 @@ public class BasicControlScript : MonoBehaviour
 
             Vector3 UpdatedMovement = RigidbodyMod;
 
-
-      
-
-
             if (Mathf.Abs(rb.velocity.y) > 0.0f)
             {
                 UpdatedMovement.x = ((UpdatedMovement.x * (Velocity) * Time.deltaTime));
@@ -159,35 +155,35 @@ public class BasicControlScript : MonoBehaviour
             }
 
 
-            
+
             //Jump Reset
             if (Physics.Raycast(transform.position, KonoDownwardVector, 0.7f))
             {
-                
-                if(RecentlyJumped == false && j_Time > JumpResetTimer)
+
+                if (RecentlyJumped == false && j_Time > JumpResetTimer)
                 {
                     GetComponent<PlayerManager>().NumberOfJumps = GetComponent<PlayerManager>().MaxNumberOfJumps;
-                  
+
                     ExponentialJump = JumpPower;
                     RecentlyJumped = true;
                     j_Time = 0.0f;
-                    
+
                 }
                 Vector3 NewVelocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
                 rb.velocity = NewVelocity;
-            
+
             }
 
             //In air stuff
             else
             {
-                if(rb.velocity.x > 0.0f && UpdatedMovement.x > 0)
+                if (rb.velocity.x > 0.0f && UpdatedMovement.x < 0)
                 {
                     rb.velocity += new Vector3(-1, 0, 0);
                 }
                 if (rb.velocity.x < 0.0f && UpdatedMovement.x > 0)
                 {
-                    rb.velocity += new Vector3(1,0,0);
+                    rb.velocity += new Vector3(1, 0, 0);
                 }
 
 
@@ -199,12 +195,12 @@ public class BasicControlScript : MonoBehaviour
                 RecentlyJumped = false;
             }
 
-         
 
         }
-   
-   
+
+
     }
-  
+
 }
+
 
