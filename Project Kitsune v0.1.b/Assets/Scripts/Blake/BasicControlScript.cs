@@ -113,7 +113,7 @@ public class BasicControlScript : MonoBehaviour
                                 f_Jump = true;
                             }
 
-                            else if (f_Jump == true)
+                            else if (f_Jump == true && GetComponent<PlayerManager>().InfinateJumps == false)
                             {
                                 ExponentialJump *= ExponentialJumpModifier;
                             }
