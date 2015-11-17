@@ -17,7 +17,6 @@ public class CameraEventScript : MonoBehaviour
 
         gCameraPosition.x = playerObject.transform.position.x;
 
-        //Follow "Player" Y
         gCameraPosition.y = playerObject.transform.position.y + 2;
 
         gCameraPosition.z = followObject.transform.position.z - 20;
