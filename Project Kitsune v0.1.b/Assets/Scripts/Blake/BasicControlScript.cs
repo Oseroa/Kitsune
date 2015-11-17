@@ -138,10 +138,6 @@ public class BasicControlScript : MonoBehaviour
 
             Vector3 UpdatedMovement = RigidbodyMod;
 
-
-      
-
-
             if (Mathf.Abs(rb.velocity.y) > 0.0f)
             {
                 UpdatedMovement.x = ((UpdatedMovement.x * (Velocity) * Time.deltaTime));
@@ -181,7 +177,7 @@ public class BasicControlScript : MonoBehaviour
             //In air stuff
             else
             {
-                if(rb.velocity.x > 0.0f && UpdatedMovement.x > 0)
+                if(rb.velocity.x > 0.0f && UpdatedMovement.x < 0)
                 {
                     rb.velocity += new Vector3(-1, 0, 0);
                 }
@@ -200,7 +196,6 @@ public class BasicControlScript : MonoBehaviour
             }
 
          
-
         }
    
    

@@ -88,6 +88,9 @@ public class ShrineManager : MonoBehaviour
                 Collider LHS_Scapegoat = LeftSideCollider.GetComponent<Collider>();
                 Collider RHS_Scapegoat = RightSideCollider.GetComponent<Collider>();
 
+                GameObject placeHolder = GameObject.FindGameObjectWithTag("Player");
+
+                placeHolder.GetComponent<PlayerManager>().MaxNumberOfJumps += 1;
                 LHS_Scapegoat.enabled = false;
                 RHS_Scapegoat.enabled = false;
 

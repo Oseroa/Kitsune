@@ -17,4 +17,16 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public Vector3 CurrentCheckPoint = new Vector3();
 
+    public bool InfinateJumps;
+
+    void Start()
+    {
+        if (InfinateJumps == true)
+        {
+            MaxNumberOfJumps = 100000;
+        }
+    }
+
 }
+
+
