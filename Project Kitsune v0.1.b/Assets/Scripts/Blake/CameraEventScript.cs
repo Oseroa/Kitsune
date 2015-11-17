@@ -15,12 +15,12 @@ public class CameraEventScript : MonoBehaviour
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
 
-        gCameraPosition.x = followObject.transform.position.x;
+        gCameraPosition.x = playerObject.transform.position.x;
 
         //Follow "Player" Y
         gCameraPosition.y = playerObject.transform.position.y + 2;
 
-        gCameraPosition.z = followObject.transform.position.z - 15;
+        gCameraPosition.z = followObject.transform.position.z - 20;
 
 
         transform.position = Vector3.Lerp(transform.position, gCameraPosition, Time.deltaTime);
