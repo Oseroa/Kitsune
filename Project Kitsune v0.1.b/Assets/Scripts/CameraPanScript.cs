@@ -17,7 +17,7 @@ public class CameraPanScript : MonoBehaviour
     float p_Time = 0.0f;
     [HideInInspector]
     public GameObject FollowTarget;
-   
+
 
     private int ListSize = 0;
     private int CurrentElement = 0;
@@ -38,12 +38,12 @@ public class CameraPanScript : MonoBehaviour
                 SpiritList.Add(konoObject); //Sort later depending on specification
             }
             SpiritList.Add(ActivatingShrine);
-           // GameObject PlayerScapegoat = GameObject.FindGameObjectWithTag("Player");
+            // GameObject PlayerScapegoat = GameObject.FindGameObjectWithTag("Player");
 
-           // SpiritList.Add(PlayerScapegoat);
+            // SpiritList.Add(PlayerScapegoat);
             _runOnce = true;
-    
-            if(CurrentElement != SpiritList.Count)
+
+            if (CurrentElement != SpiritList.Count)
             {
                 FollowTarget = SpiritList[CurrentElement];
             }
@@ -67,7 +67,7 @@ public class CameraPanScript : MonoBehaviour
         {
             p_Time += Time.deltaTime;
 
-            if(LastRun == true && p_Time > TimeSpentAtTarget)
+            if (LastRun == true && p_Time > TimeSpentAtTarget)
             {
                 p_Time = 0.0f;
                 //GetComponent<CameraPanScript>().enabled = false;
@@ -78,16 +78,16 @@ public class CameraPanScript : MonoBehaviour
                 connectedShrine.PanHasFinished = true;
                 this.enabled = false;
             }
-            else if(CurrentElement != ListSize && p_Time > TimeSpentAtTarget)
+            else if (CurrentElement != ListSize && p_Time > TimeSpentAtTarget)
             {
                 p_Time = 0.0f;
                 CurrentElement = CurrentElement + 1;
                 if (CurrentElement != ListSize)
                 {
                     FollowTarget = SpiritList[CurrentElement];
-                } 
-                
-               
+                }
+
+
             }
 
             else if (CurrentElement == ListSize && p_Time > TimeSpentAtTarget)
