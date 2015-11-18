@@ -5,7 +5,7 @@ public class ShrineManager : MonoBehaviour
 {
     public GameObject LeftSideCollider;
     public GameObject RightSideCollider;
-    public GameObject[] PanToObjects;
+    //	public GameObject[] PanToObjects;
 
     public GameObject FirstLantern;
     public GameObject SecondLantern;
@@ -24,43 +24,42 @@ public class ShrineManager : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
+        ////GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if (!PanHasFinished)
+        //if (!PanHasFinished)
+        //{
+        //	//CameraPanScript cps = CameraScapegoat.GetComponent<CameraPanScript>();
+        //	//cps.PanObjectList = PanToObjects;
+        //	//cps.ActivatingShrine = gameObject;
+        //	//cps.enabled = true;
+        //	//CameraScapegoat.GetComponent<CameraScript>().enabled = false;
+        //}
+
+        if (EventTriggered == false)
         {
-            CameraPanScript cps = CameraScapegoat.GetComponent<CameraPanScript>();
-            cps.PanObjectList = PanToObjects;
-            cps.ActivatingShrine = gameObject;
-            cps.enabled = true;
-            CameraScapegoat.GetComponent<CameraScript>().enabled = false;
-        }
-        else
-        {
-            if (EventTriggered == false)
+            if (col.tag == ("Player"))
             {
-                if (col.tag == ("Player"))
-                {
-                    CameraScapegoat.GetComponent<CameraScript>().enabled = false;
-                    CameraScapegoat.GetComponent<CameraEventScript>().followObject = gameObject;
-                    CameraScapegoat.GetComponent<CameraEventScript>().enabled = true;
+                //	CameraScapegoat.GetComponent<CameraScript>().enabled = false;
+                //	CameraScapegoat.GetComponent<CameraEventScript>().followObject = gameObject;
+                //	CameraScapegoat.GetComponent<CameraEventScript>().enabled = true;
 
-                    Collider LHS_ColScapegoat = LeftSideCollider.GetComponent<Collider>();
+                Collider LHS_ColScapegoat = LeftSideCollider.GetComponent<Collider>();
 
-                    LHS_ColScapegoat.enabled = true;
+                LHS_ColScapegoat.enabled = true;
 
-                    Collider RHS_ColScapegoat = RightSideCollider.GetComponent<Collider>();
+                Collider RHS_ColScapegoat = RightSideCollider.GetComponent<Collider>();
 
-                    RHS_ColScapegoat.enabled = true;
+                RHS_ColScapegoat.enabled = true;
 
-                    EventTriggered = true;
+                EventTriggered = true;
 
-                    EventRunning = true;
+                EventRunning = true;
 
-                    EventCompleted = false;
+                EventCompleted = false;
 
-                }
             }
         }
+
     }
 
     void Update()
@@ -74,14 +73,14 @@ public class ShrineManager : MonoBehaviour
         }
         if (EventRunning == true)
         {
-            
+
             if (EventCompleted == true)
             {
-                GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
+                //GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
 
-                CameraScapegoat.GetComponent<CameraEventScript>().enabled = false;
+                //CameraScapegoat.GetComponent<CameraEventScript>().enabled = false;
 
-                CameraScapegoat.GetComponent<CameraScript>().enabled = true;
+                //CameraScapegoat.GetComponent<CameraScript>().enabled = true;
 
                 Collider LHS_Scapegoat = LeftSideCollider.GetComponent<Collider>();
                 Collider RHS_Scapegoat = RightSideCollider.GetComponent<Collider>();
@@ -91,7 +90,7 @@ public class ShrineManager : MonoBehaviour
                 placeHolder.GetComponent<PlayerManager>().MaxNumberOfJumps += 1;
                 LHS_Scapegoat.enabled = false;
                 RHS_Scapegoat.enabled = false;
-				EventRunning=false;
+                EventRunning = false;
 
             }
         }

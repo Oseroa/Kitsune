@@ -5,7 +5,7 @@ public class ShrineManager2 : MonoBehaviour
 {
 	public GameObject LeftSideCollider;
 	public GameObject RightSideCollider;
-	public GameObject[] PanToObjects;
+//	public GameObject[] PanToObjects;
 	
 	public GameObject FirstLantern;
 	public GameObject SecondLantern;
@@ -24,25 +24,24 @@ public class ShrineManager2 : MonoBehaviour
 	
 	void OnTriggerStay(Collider col)
 	{
-		GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
+		////GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
 		
-		if (!PanHasFinished)
-		{
-			CameraPanScript cps = CameraScapegoat.GetComponent<CameraPanScript>();
-			cps.PanObjectList = PanToObjects;
-			cps.ActivatingShrine = gameObject;
-			cps.enabled = true;
-			CameraScapegoat.GetComponent<CameraScript>().enabled = false;
-		}
-		else
-		{
+		//if (!PanHasFinished)
+		//{
+		//	//CameraPanScript cps = CameraScapegoat.GetComponent<CameraPanScript>();
+		//	//cps.PanObjectList = PanToObjects;
+		//	//cps.ActivatingShrine = gameObject;
+		//	//cps.enabled = true;
+		//	//CameraScapegoat.GetComponent<CameraScript>().enabled = false;
+		//}
+		
 			if (EventTriggered == false)
 			{
 				if (col.tag == ("Player"))
 				{
-					CameraScapegoat.GetComponent<CameraScript>().enabled = false;
-					CameraScapegoat.GetComponent<CameraEventScript>().followObject = gameObject;
-					CameraScapegoat.GetComponent<CameraEventScript>().enabled = true;
+				//	CameraScapegoat.GetComponent<CameraScript>().enabled = false;
+				//	CameraScapegoat.GetComponent<CameraEventScript>().followObject = gameObject;
+				//	CameraScapegoat.GetComponent<CameraEventScript>().enabled = true;
 					
 					Collider LHS_ColScapegoat = LeftSideCollider.GetComponent<Collider>();
 					
@@ -60,7 +59,7 @@ public class ShrineManager2 : MonoBehaviour
 					
 				}
 			}
-		}
+		
 	}
 	
 	void Update()
@@ -77,11 +76,11 @@ public class ShrineManager2 : MonoBehaviour
 			
 			if (EventCompleted == true)
 			{
-				GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
+				//GameObject CameraScapegoat = GameObject.FindGameObjectWithTag("MainCamera");
 				
-				CameraScapegoat.GetComponent<CameraEventScript>().enabled = false;
+				//CameraScapegoat.GetComponent<CameraEventScript>().enabled = false;
 				
-				CameraScapegoat.GetComponent<CameraScript>().enabled = true;
+				//CameraScapegoat.GetComponent<CameraScript>().enabled = true;
 				
 				Collider LHS_Scapegoat = LeftSideCollider.GetComponent<Collider>();
 				Collider RHS_Scapegoat = RightSideCollider.GetComponent<Collider>();
